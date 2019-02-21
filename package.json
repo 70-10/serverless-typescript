@@ -1,0 +1,23 @@
+{
+  "name": "serverless-typescript",
+  "version": "1.0.0",
+  "description": "Serverless Typescript",
+  "license": "MIT",
+  "author": "70_10",
+  "main": "",
+  "scripts": {
+    "dev": "serverless offline"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.19",
+    "@types/node": "^11.9.4",
+    "prettier": "^1.16.4",
+    "serverless-offline": "^4.5.1",
+    "serverless-webpack": "^5.2.0",
+    "source-map-support": "^0.5.10",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3",
+    "webpack": "^4.29.5"
+  }
+}
