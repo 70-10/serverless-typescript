@@ -22,6 +22,6 @@
     "source-map-support": "0.5.12",
     "ts-loader": "5.3.3",
     "typescript": "3.5.1",
-    "webpack": "4.29.6"
+    "webpack": "4.32.2"
   }
 }
