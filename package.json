@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.26",
-    "@types/express": "4.16.1",
+    "@types/express": "4.17.0",
     "@types/node": "11.13.13",
     "prettier": "1.17.1",
     "serverless-offline": "5.0.1",
