@@ -1,14 +1,6 @@
 import serverless from "serverless-http";
 import express, { Request } from "express";
-import { APIGatewayProxyEvent, APIGatewayEventRequestContext, Context } from "aws-lambda";
-
-declare global {
-  namespace Express {
-    export interface Request {
-      context?: APIGatewayEventRequestContext;
-    }
-  }
-}
+import { APIGatewayProxyEvent, Context } from "aws-lambda";
 
 const app = express();
 
