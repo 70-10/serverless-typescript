@@ -1,14 +1,10 @@
 import serverless from "serverless-http";
-import * as express from "express";
-import { APIGatewayProxyEvent, APIGatewayEventRequestContext, Context } from "aws-lambda";
-
-interface CustomRequest extends express.Request {
-  context: APIGatewayEventRequestContext;
-}
+import express, { Request } from "express";
+import { APIGatewayProxyEvent, Context } from "aws-lambda";
 
 const app = express();
 
-app.get("/hello", (req: CustomRequest, res: express.Response) => {
+app.get("/hello", (req, res) => {
   return res.json({
     input: {
       headers: req.headers,
@@ -22,7 +18,7 @@ app.get("/hello", (req: CustomRequest, res: express.Response) => {
 });
 
 export const handler = serverless(app, {
-  request: (req: CustomRequest, event: APIGatewayProxyEvent, _context: Context) => {
+  request: (req: Request, event: APIGatewayProxyEvent, _context: Context) => {
     req.context = event.requestContext;
   },
 });
