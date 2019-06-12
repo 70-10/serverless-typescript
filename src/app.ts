@@ -2,6 +2,8 @@ import serverless from "serverless-http";
 import express, { Request } from "express";
 import { APIGatewayProxyEvent, Context } from "aws-lambda";
 
+import user from "./routes/users";
+
 const app = express();
 
 app.get("/hello", (req, res) => {
@@ -16,6 +18,8 @@ app.get("/hello", (req, res) => {
     },
   });
 });
+
+app.use("/users", user);
 
 export const handler = serverless(app, {
   request: (req: Request, event: APIGatewayProxyEvent, _context: Context) => {
