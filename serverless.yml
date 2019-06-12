@@ -1,20 +1,54 @@
 service:
-  name: serverless-typescript
+  name: ${self:custom.service}
 
-# Add the serverless-webpack plugin
+custom:
+  service: serverless-typescript
+  stage: ${opt:stage, self:provider.stage}
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      development:
+        sources:
+          - table: ${self:custom.table.user}
+            sources: [./tools/migrate/users.json]
+    stages:
+      - LOCALDEV
+  table:
+    user: ${self:custom.service}-${self:custom.stage}-User
+
 plugins:
+  - serverless-dynamodb-local
   - serverless-webpack
   - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs10.x
-  stage: dev
+  stage: DEV
   region: ap-northeast-1
+  environment:
+    SERVICE_NAME: ${self:custom.service}
+    NODE_ENV: ${self:custom.stage}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:Query"
+        - "dynamodb:Scan"
+        - "dynamodb:GetItem"
+        - "dynamodb:PutItem"
+        - "dynamodb:UpdateItem"
+        - "dynamodb:DeleteItem"
+        - "dynamodb:BatchWriteItem"
+      Resource:
+        - { "Fn::GetAtt": ["UserTable", "Arn"] }
 
 functions:
   app:
-    handler: app.handler
+    handler: src/app.handler
     events:
       - http:
           path: /
@@ -24,3 +58,21 @@ functions:
           path: /{any+}
           method: ANY
           cors: true
+
+resources:
+  Resources:
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.table.user}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        SSESpecification:
+          SSEEnabled: true
