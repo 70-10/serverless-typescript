@@ -8,10 +8,13 @@
   "scripts": {
     "dev": "run-s dynamo offline",
     "dynamo": "sls dynamodb install",
-    "offline": "sls offline start --stage LOCALDEV"
+    "offline": "sls offline start --stage LOCALDEV --useSeparateProcesses"
   },
   "dependencies": {
     "express": "^4.16.4",
+    "inversify": "^5.0.1",
+    "inversify-express-utils": "^6.3.2",
+    "reflect-metadata": "^0.1.13",
     "serverless-http": "^2.0.0"
   },
   "devDependencies": {

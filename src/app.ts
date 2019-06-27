@@ -1,25 +1,23 @@
+import "reflect-metadata";
 import serverless from "serverless-http";
-import express, { Request } from "express";
+import { Request, json, urlencoded } from "express";
 import { APIGatewayProxyEvent, Context } from "aws-lambda";
+import { Container } from "inversify";
+import { UserService } from "./services/userService";
+import { UserRepository } from "./repositories/userRepository";
+import { InversifyExpressServer } from "inversify-express-utils";
+import "./controllers/userController";
 
-import user from "./routes/users";
+const container = new Container();
+container.bind<UserService>("UserService").to(UserService);
+container.bind<UserRepository>("UserRepository").to(UserRepository);
 
-const app = express();
-
-app.get("/hello", (req, res) => {
-  return res.json({
-    input: {
-      headers: req.headers,
-      body: req.body,
-      context: req.context,
-      method: req.method,
-      params: req.params,
-      path: req.path,
-    },
-  });
+const server = new InversifyExpressServer(container);
+server.setConfig(app => {
+  app.use(urlencoded({ extended: false }));
+  app.use(json());
 });
-
-app.use("/users", user);
+const app = server.build();
 
 export const handler = serverless(app, {
   request: (req: Request, event: APIGatewayProxyEvent, _context: Context) => {
