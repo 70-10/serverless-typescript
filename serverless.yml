@@ -35,6 +35,7 @@ provider:
   environment:
     SERVICE_NAME: ${self:custom.service}
     NODE_ENV: ${self:custom.stage}
+    TZ: "Asia/Tokyo"
   iamRoleStatements:
     - Effect: "Allow"
       Action:
