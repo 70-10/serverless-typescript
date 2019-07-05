@@ -10,6 +10,7 @@ custom:
       inMemory: true
       migrate: true
       seed: true
+      convertEmptyValues: true
     seed:
       development:
         sources:
