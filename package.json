@@ -27,7 +27,7 @@
     "serverless-dynamodb-local": "0.2.38",
     "serverless-offline": "5.8.0",
     "serverless-webpack": "5.3.1",
-    "source-map-support": "0.5.12",
+    "source-map-support": "0.5.16",
     "ts-loader": "6.0.4",
     "typescript": "3.5.3",
     "webpack": "4.36.1"
