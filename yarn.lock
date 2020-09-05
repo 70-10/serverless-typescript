@@ -654,10 +654,10 @@
     request "^2.88.0"
     request-promise-native "^1.0.8"
 
-"@types/aws-lambda@8.10.57":
-  version "8.10.57"
-  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.57.tgz#39ca3bbe52c5b4e27dc83c2a3b5ed434834568b9"
-  integrity sha512-LMOA9bJLerYoe2KvzHugfaLTa0jUPWrqwxq5VUZ/ZuAMKLJm6oNdCio38vw8jWEIAkPR3P6mBIwnU1DPgelAKg==
+"@types/aws-lambda@8.10.62":
+  version "8.10.62"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.62.tgz#857de3f73ab503136f2eefe965b1b67e5f397b62"
+  integrity sha512-43XhJY5jvyH03U0cRsSqeHWhvmGZNoLzTPSAZ3JAqgG9p20uw+Sx9Auk5OAefJajd9ZcfjDJ/9lJ2BiBxfKJRw==
 
 "@types/aws-lambda@^8.10.19":
   version "8.10.58"
